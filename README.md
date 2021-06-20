@@ -1,0 +1,1 @@
+# net-core-sql-rabbitmq-repository

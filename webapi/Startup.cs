@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using DbMigration;
+using Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -14,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using Repository.SQL;
+using Repository.SQL.Repositories;
 using WebApi.Workers;
 
 namespace WebApi
@@ -36,6 +38,8 @@ namespace WebApi
             services.AddHostedService<DbMigratorService>(s => new DbMigratorService(new DbUpMigrator(), storeSection.Value));
 
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(storeSection.Value));
+
+            services.AddTransient<IProductRepository, ProductRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

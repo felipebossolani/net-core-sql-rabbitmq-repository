@@ -13,5 +13,7 @@ namespace Domain.Models
         public Guid Id { get; private set; }
         public string Description { get; private set; }
         public decimal Price { get; private set; }
+
+        public void Update(string description, decimal price) => (Description, Price) = (description, price);        
     }
 }

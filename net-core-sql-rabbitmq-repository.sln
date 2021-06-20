@@ -1,17 +1,23 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.SQL", "Repository.SQL\Repository.SQL.csproj", "{A2EA8E5D-8C8B-4AF1-B5FE-AD8CBE37CC64}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.SQL", "Repository.SQL\Repository.SQL.csproj", "{A2EA8E5D-8C8B-4AF1-B5FE-AD8CBE37CC64}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository.RabbitMQ", "Repository.RabbitMQ\Repository.RabbitMQ.csproj", "{F530A32A-8152-402F-BF2B-81CC6ED6C21C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository.RabbitMQ", "Repository.RabbitMQ\Repository.RabbitMQ.csproj", "{F530A32A-8152-402F-BF2B-81CC6ED6C21C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "webapi\WebApi.csproj", "{46DD4553-47F1-4AAC-BFB1-DB8AA9470093}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "webapi\WebApi.csproj", "{46DD4553-47F1-4AAC-BFB1-DB8AA9470093}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{841BC697-7117-41DB-8F30-FC04ECA818F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{841BC697-7117-41DB-8F30-FC04ECA818F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DbMigration", "DbMigration\DbMigration.csproj", "{35A9CD39-0141-49ED-89EC-AAEC65BBBD15}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbMigration", "DbMigration\DbMigration.csproj", "{35A9CD39-0141-49ED-89EC-AAEC65BBBD15}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-API", "01-API", "{93A70DE0-6882-471C-8C53-3E676C6D2224}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Domain", "02-Domain", "{DCA17198-9867-4441-A6A3-C4068B7D4E0B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Infra", "03-Infra", "{FF697B1B-D24B-46AA-91A4-F510CF3BBB57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +27,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{A2EA8E5D-8C8B-4AF1-B5FE-AD8CBE37CC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -86,5 +89,18 @@ Global
 		{35A9CD39-0141-49ED-89EC-AAEC65BBBD15}.Release|x64.Build.0 = Release|Any CPU
 		{35A9CD39-0141-49ED-89EC-AAEC65BBBD15}.Release|x86.ActiveCfg = Release|Any CPU
 		{35A9CD39-0141-49ED-89EC-AAEC65BBBD15}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A2EA8E5D-8C8B-4AF1-B5FE-AD8CBE37CC64} = {FF697B1B-D24B-46AA-91A4-F510CF3BBB57}
+		{F530A32A-8152-402F-BF2B-81CC6ED6C21C} = {FF697B1B-D24B-46AA-91A4-F510CF3BBB57}
+		{46DD4553-47F1-4AAC-BFB1-DB8AA9470093} = {93A70DE0-6882-471C-8C53-3E676C6D2224}
+		{841BC697-7117-41DB-8F30-FC04ECA818F6} = {DCA17198-9867-4441-A6A3-C4068B7D4E0B}
+		{35A9CD39-0141-49ED-89EC-AAEC65BBBD15} = {FF697B1B-D24B-46AA-91A4-F510CF3BBB57}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AB0153B5-4BD2-4A68-9463-6A52AA5C8DB2}
 	EndGlobalSection
 EndGlobal

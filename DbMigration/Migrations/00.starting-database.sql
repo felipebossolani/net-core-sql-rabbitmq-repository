@@ -1,0 +1,14 @@
+﻿CREATE TABLE dbo.Products
+	(
+	Id uniqueidentifier NOT NULL,
+	Description varchar(100) NOT NULL,
+	Price numeric(20,8) NOT NULL
+	)  ON [PRIMARY]
+GO
+ALTER TABLE dbo.Products ADD CONSTRAINT
+	PK_Products PRIMARY KEY CLUSTERED 
+	(
+	Id
+	) WITH( STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+
+GO

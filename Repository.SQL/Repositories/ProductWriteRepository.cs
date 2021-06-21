@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace Repository.SQL.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductWriteRepository : IProductWriteRepository
     {
         private readonly StoreContext _context;
 
-        public ProductRepository(StoreContext context)
+        public ProductWriteRepository(StoreContext context)
         {
             _context = context;
         }
@@ -31,15 +31,6 @@ namespace Repository.SQL.Repositories
             _context.Set<Product>().Remove(product);
             await _context.SaveChangesAsync();
         }
-
-        public async Task<IReadOnlyList<Product>> GetAllAsync() => 
-            await _context
-                .Products
-                .OrderBy(x => x.Description)
-                .ToListAsync();
-
-        public async Task<Product> GetByIdAsync(Guid id) => 
-            await _context.Products.FindAsync(id);
 
         public async Task UpdateAsync(Product product)
         {

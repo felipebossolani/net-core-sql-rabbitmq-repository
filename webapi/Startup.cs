@@ -39,7 +39,8 @@ namespace WebApi
 
             services.AddDbContext<StoreContext>(options => options.UseSqlServer(storeSection.Value));
 
-            services.AddTransient<IProductRepository, ProductRepository>();
+            services.AddTransient<IProductWriteRepository, ProductWriteRepository>();
+            services.AddTransient<IProductReadRepository, ProductReadRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

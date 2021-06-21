@@ -1,1 +1,1 @@
-# net-core-sql-rabbitmq-repository
+# net-core-sql-redis-repository

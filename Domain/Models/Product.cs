@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.Json.Serialization;
 
 namespace Domain.Models
 {
@@ -11,7 +12,8 @@ namespace Domain.Models
             Price = price;
         }
 
-        public Guid Id { get; init; }
+        [JsonInclude]
+        public Guid Id { get; private init; }
         public string Description { get; private set; }
         public decimal Price { get; private set; }
 

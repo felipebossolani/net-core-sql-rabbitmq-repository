@@ -24,6 +24,6 @@ namespace Repository.SQL.Repositories
                 .ToListAsync();
 
         public async Task<Product> GetByIdAsync(Guid id) => 
-            await _context.Products.FindAsync(id);
+            await _context.Products.FirstOrDefaultAsync(x => id.Equals(x.Id));
     }
 }

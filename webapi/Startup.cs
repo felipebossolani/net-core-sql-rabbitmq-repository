@@ -9,11 +9,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Repository.Cache.Redis.Repositories;
 using Repository.SQL;
 using Repository.SQL.Repositories;
 using WebApi.Workers;
@@ -32,15 +34,24 @@ namespace WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            var storeSection = Configuration.GetSection("ConnectionStrings:Store");
+            var storeDatabase = Configuration.GetSection("ConnectionStrings:StoreDatabase");
+            var storeRedis = Configuration.GetSection("ConnectionStrings:StoreRedis");
 
             services.AddTransient<IMigrator, DbUpMigrator>();
-            services.AddHostedService<DbMigratorService>(s => new DbMigratorService(new DbUpMigrator(), storeSection.Value));
+            services.AddHostedService(s => new DbMigratorService(new DbUpMigrator(), storeDatabase.Value));
 
-            services.AddDbContext<StoreContext>(options => options.UseSqlServer(storeSection.Value));
+            services.AddDbContext<StoreContext>(options => options.UseSqlServer(storeDatabase.Value));
+            services.AddStackExchangeRedisCache(options => options.Configuration = storeRedis.Value);
 
             services.AddTransient<IProductWriteRepository, ProductWriteRepository>();
-            services.AddTransient<IProductReadRepository, ProductReadRepository>();
+            
+            //services.AddTransient<IProductReadRepository, ProductReadRepository>();
+            services.AddTransient<ProductReadRepository>();
+            services.AddTransient<IProductReadRepository, ProductReadCachingDecorator>(
+                provider => new ProductReadCachingDecorator(
+                    provider.GetService<ProductReadRepository>(),
+                    provider.GetService<IDistributedCache>()
+                    ));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

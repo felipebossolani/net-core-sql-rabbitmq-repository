@@ -45,14 +45,14 @@ namespace WebApi
 
             //services.AddTransient<IProductWriteRepository, ProductWriteRepository>();
             //services.AddTransient<IProductReadRepository, ProductReadRepository>();
-
+            
             services.AddTransient<ProductWriteRepository>();
             services.AddTransient<IProductWriteRepository, ProductWriteCachingDecorator>(
                 provider => new ProductWriteCachingDecorator(
                     provider.GetService<ProductWriteRepository>(),
                     provider.GetService<IDistributedCache>()
                     ));
-
+            
             services.AddTransient<ProductReadRepository>();
             services.AddTransient<IProductReadRepository, ProductReadCachingDecorator>(
                 provider => new ProductReadCachingDecorator(

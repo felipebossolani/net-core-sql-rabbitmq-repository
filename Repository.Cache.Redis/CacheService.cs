@@ -1,10 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Distributed;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Repository.Cache.Redis
 {
@@ -12,7 +9,7 @@ namespace Repository.Cache.Redis
     {
         private readonly IDistributedCache _cache;
 
-        public CacheService(IDistributedCache cache)
+        internal CacheService(IDistributedCache cache)
         {
             _cache = cache;
         }
@@ -31,7 +28,7 @@ namespace Repository.Cache.Redis
         {
             var options = new DistributedCacheEntryOptions
             {
-                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(1),
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(10),
                 SlidingExpiration = TimeSpan.FromMinutes(10)
             };
             _cache.SetString(key, value: JsonSerializer.Serialize(value), options);
